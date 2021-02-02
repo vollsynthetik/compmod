@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>compmod.dll</AssemblyName>
+    <OutputDirectory>bin/$(Configuration)</OutputDirectory>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="Clean">
+    <RemoveDir Directories="bin" 
+               Condition="Exists(bin)"></RemoveDir>
+  </Target>
+  <Target Name="Build">
+    <Csc Sources="@(Compile)"
+         OutputAssembly="bin/compmod.dll" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="System.Management.Automation.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="compmod\Objects\Note.cs" />
+    <Compile Include="compmod\Cmdlets\NewNoteCommand.cs" />
+  </ItemGroup>
+</Project>

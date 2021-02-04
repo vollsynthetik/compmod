@@ -1,21 +1,29 @@
 using System.Management.Automation;
+using CompMod.Enums;
+using CompMod.Objects;
 
-namespace CompMod
+namespace CompMod.Cmdlets
 {
   [Cmdlet(Verbs.Common.New, "Note")]
   public class NewNoteCommand : Cmdlet
   {
-    [Parameter(Mandatory=true)]
-    public string Name
+    public NewNoteCommand() 
     {
-      get { return name; }
-      set { name = value; }
+      Velocity = 100;
     }
-    private string name;
+
+    [Parameter(Mandatory=true)]
+    public Pitch Pitch { get; set; }
+
+    [Parameter(Mandatory=false)]
+    public int Velocity { get; set; }
+
+    [Parameter(Mandatory=true)]
+    public double Duration { get; set; }
 
     protected override void ProcessRecord()
     {
-      WriteObject("Hello " + name + "!");
+      WriteObject(new Note(Pitch, Velocity, Duration));
     }
   }
 }

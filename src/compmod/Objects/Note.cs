@@ -15,5 +15,7 @@ namespace CompMod.Objects
     public Pitch Pitch { get; set; }
     public int Velocity { get; set; }
     public double Duration { get; set; }
+
+    public override Note Copy() => new Note(Pitch, Velocity, Duration);
   }
 }

@@ -10,5 +10,7 @@ namespace CompMod.Objects
     }
 
     public double Duration { get; set; }
+
+    public override Rest Copy() => new Rest(Duration);
   }
 }
